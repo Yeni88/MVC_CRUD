@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MVC_CRUD.Model;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -11,8 +13,22 @@ namespace CRUD
     // NOTE: In order to launch WCF Test Client for testing this service, please select CRUD.svc or CRUD.svc.cs at the Solution Explorer and start debugging.
     public class CRUD : ICRUD
     {
-        public void DoWork()
+        public List<Product> GetProducts()
         {
+            ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+            using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+            {
+                var resultado = connection.Query<Product, Category, Supplier, Product>(
+                     "usp_ConsultaArticulos",
+                     (p, b) =>
+                     {
+                         p.Category = b;
+                         return a;
+                     },
+                     splitOn: "IdArticulo,IdMarca",
+                     commandType: CommandType.StoredProcedure);
+                return resultado.ToList<Product>();
+
+            }
         }
-    }
 }

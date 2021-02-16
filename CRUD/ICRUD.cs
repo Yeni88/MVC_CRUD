@@ -4,6 +4,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.ServiceModel.Web;
+using MVC_CRUD.Model;
 
 namespace CRUD
 {
@@ -12,6 +14,8 @@ namespace CRUD
     public interface ICRUD
     {
         [OperationContract]
-        void DoWork();
+
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetProducts")]
+        List<Product> GetProducts();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace WcfRest.Model
+namespace MVC_CRUD.Model
 {
     public class Product
     {
