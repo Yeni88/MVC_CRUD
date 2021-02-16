@@ -21,7 +21,7 @@ namespace CRUD
                 var resultado = connection.Query<Product, Category, Supplier, Product>(
                      "usp_ConsultaArticulos",
                      (p, b) =>
-                     {
+                     { 
                          p.Category = b;
                          return a;
                      },
