@@ -1,4 +1,5 @@
-﻿using MVC_CRUD.Model;
+﻿using Dapper;
+using MVC_CRUD.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,17 +19,19 @@ namespace CRUD
             ConnectionDB ConnectionManagerInstance = new ConnectionDB();
             using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
             {
-                var resultado = connection.Query<Product, Category, Supplier, Product>(
-                     "usp_ConsultaArticulos",
-                     (p, b) =>
-                     { 
-                         p.Category = b;
-                         return a;
+                var resultado = connection.Query<Product, Supplier, Category, Product>(
+                     "sp_ShowAllProducts",
+                     (p, s, c) =>
+                     {
+                         p.supplier = s;
+                         p.category = c;
+                         return p;
                      },
-                     splitOn: "IdArticulo,IdMarca",
+                     splitOn: "SupplierID,CategoryID",
                      commandType: CommandType.StoredProcedure);
                 return resultado.ToList<Product>();
 
             }
         }
+    }
 }

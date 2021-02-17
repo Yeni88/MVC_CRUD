@@ -15,7 +15,6 @@ namespace MVC_CRUD.Model
 
         public Category category { get; set; }
 
-        public string QuantityPerUnit { get; set; }
 
         public double UnitPrice { get; set; }
 
