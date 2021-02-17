@@ -14,8 +14,6 @@ namespace CRUD
     public interface ICRUD
     {
         [OperationContract]
-
-        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "GetProducts")]
         List<Product> GetProducts();
     }
 }
