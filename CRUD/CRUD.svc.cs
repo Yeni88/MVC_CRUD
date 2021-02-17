@@ -14,6 +14,15 @@ namespace CRUD
     // NOTE: In order to launch WCF Test Client for testing this service, please select CRUD.svc or CRUD.svc.cs at the Solution Explorer and start debugging.
     public class CRUD : ICRUD
     {
+        public void AddProducts()
+        {
+            ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+            using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+            {
+
+            }
+            }
+
         public List<Product> GetProducts()
         {
             ConnectionDB ConnectionManagerInstance = new ConnectionDB();

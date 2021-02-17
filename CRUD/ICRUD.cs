@@ -15,5 +15,7 @@ namespace CRUD
     {
         [OperationContract]
         List<Product> GetProducts();
+        //void AddParameter(IDbCommand command, string name);
+        void AddProducts();
     }
 }
