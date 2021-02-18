@@ -93,7 +93,7 @@
 
         $(document).ready(function () {
             listarProductos();
-            listCategories();
+           // listCategories();
         });
 
         var listarProductos = function () {
@@ -107,7 +107,7 @@
                     var $filas = '';
 
                     $.each(data, function (i, item) {
-                        $("#select").append('<option value=' + id + '>' + nombre + '</option>');
+                       
                         $filas += '<td class=".edit" title="">' + item.ProductID + '</td>';
                         $filas += '<td class=".edit" title="">' + item.ProductName + '</td>';
                         $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
@@ -123,22 +123,22 @@
 
         //LSITAR CATEGORIAS
 
-        var listCategories = function () {
+        //var listCategories = function () {
 
-            $.ajax({
-                type: "POST",
-                url: '/Product/GetCategories',
-                datatype: "json",
-                cache: false,
-                success: function (data) {
-                    console.log(data)
-                    var $filas = '';
+        //    $.ajax({
+        //        type: "POST",
+        //        url: '/Product/GetCategories',
+        //        datatype: "json",
+        //        cache: false,
+        //        success: function (data) {
+        //            console.log(data)
+        //            //var $filas = '';
 
-                    $.each(data, function (i, item) {
-                        $("#CategoryT").append('<option value=' + i + '>' + item.CategoryName + '</option>');
-                    });
-                }
-            });
-        };
+        //            $.each(data, function (i, item) {
+        //                $("#CategoryT").append('<option value=' + i + '>' + item.CategoryName + '</option>');
+        //            });
+        //        }
+        //    });
+        //};
     </script>
 </div>
