@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="29df1694-4ef2-4b3c-b759-ca1dce55975c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8b803cd4-1f9c-4231-ab1d-2c814eeb96e4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -21,13 +21,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:52222/CRUD.svc?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:52222/CRUD.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="CRUD.xsd" MetadataType="Schema" ID="64d20411-bcd4-4d69-b823-2f566c6a3c6d" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd1" />
-    <MetadataFile FileName="CRUD1.xsd" MetadataType="Schema" ID="211776fc-f370-4ecf-b7c3-7c4c457ac7cb" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd2" />
-    <MetadataFile FileName="CRUD2.xsd" MetadataType="Schema" ID="92fcdbeb-afd0-466d-9538-9648e3e48783" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd0" />
-    <MetadataFile FileName="CRUD.wsdl" MetadataType="Wsdl" ID="74ee4fcd-397b-4225-a7af-c02bed7f464d" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?wsdl" />
+    <MetadataFile FileName="CRUD.disco" MetadataType="Disco" ID="3bbb42b6-6110-459e-b7ab-6e60d5846b64" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?disco" />
+    <MetadataFile FileName="CRUD.xsd" MetadataType="Schema" ID="d0e42338-fe8b-4f6a-aa3e-d6bf75c32dd8" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd1" />
+    <MetadataFile FileName="CRUD1.xsd" MetadataType="Schema" ID="29f3a6d9-8a44-4489-a2bf-de694b26a3bd" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd2" />
+    <MetadataFile FileName="CRUD2.xsd" MetadataType="Schema" ID="29a05936-4b31-482f-afc0-169914896a65" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?xsd=xsd0" />
+    <MetadataFile FileName="CRUD.wsdl" MetadataType="Wsdl" ID="4e9aa060-28fb-4821-b694-bb308de31552" SourceId="1" SourceUrl="http://localhost:52222/CRUD.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

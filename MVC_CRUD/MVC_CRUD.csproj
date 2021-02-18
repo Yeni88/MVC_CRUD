@@ -135,17 +135,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CRUD_Service\CRUD.disco" />
     <None Include="Connected Services\CRUD_Service\configuration91.svcinfo" />
     <None Include="Connected Services\CRUD_Service\configuration.svcinfo" />
-    <Content Include="Connected Services\CRUD_Service\MVC_CRUD.CRUD_Service.Product.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
     <None Include="Connected Services\CRUD_Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -170,6 +165,9 @@
     <None Include="Connected Services\CRUD_Service\CRUD2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Properties\DataSources\MVC_CRUD.Entities.Models.ProductEntity.datasource" />
+    <Content Include="Properties\DataSources\MVC_CRUD.Entities.Models.CategoryEntity.datasource" />
+    <Content Include="Properties\DataSources\MVC_CRUD.Entities.Models.SupplierEntity.datasource" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -215,6 +213,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVC_CRUD.Entities\MVC_CRUD.Entities.csproj">
+      <Project>{9c87da3e-6e5b-46b1-b0ba-29f20ce68799}</Project>
+      <Name>MVC_CRUD.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CRUD_Service\" />

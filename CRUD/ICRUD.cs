@@ -4,8 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using System.ServiceModel.Web;
-using MVC_CRUD.Model;
+using MVC_CRUD.Entities.Models;
 
 namespace CRUD
 {
@@ -14,8 +13,16 @@ namespace CRUD
     public interface ICRUD
     {
         [OperationContract]
-        List<Product> GetProducts();
-        //void AddParameter(IDbCommand command, string name);
-        void AddProducts();
+        List<ProductEntity> GetProducts();
+
+        [OperationContract]
+        List<CategoryEntity> GetCategories();
+
+        [OperationContract]
+        List<SupplierEntity> GetSuppliers();
+
+        [OperationContract]
+        ProductEntity AddProducts(ProductEntity product);
+        
     }
 }

@@ -4,7 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:52222/CRUD.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:52222/CRUD.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:52222/CRUD.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MVC_CRUD.Model" />
+      <xsd:import schemaLocation="http://localhost:52222/CRUD.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/MVC_CRUD.Entities.Models" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ICRUD_GetProducts_InputMessage">
@@ -13,16 +13,73 @@
   <wsdl:message name="ICRUD_GetProducts_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetProductsResponse" />
   </wsdl:message>
+  <wsdl:message name="ICRUD_GetCategories_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategories" />
+  </wsdl:message>
+  <wsdl:message name="ICRUD_GetCategories_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICRUD_GetSuppliers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="ICRUD_GetSuppliers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICRUD_AddProducts_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProducts" />
+  </wsdl:message>
+  <wsdl:message name="ICRUD_AddProducts_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProductsResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICRUD">
     <wsdl:operation name="GetProducts">
       <wsdl:input wsaw:Action="http://tempuri.org/ICRUD/GetProducts" message="tns:ICRUD_GetProducts_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICRUD/GetProductsResponse" message="tns:ICRUD_GetProducts_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICRUD/GetCategories" message="tns:ICRUD_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICRUD/GetCategoriesResponse" message="tns:ICRUD_GetCategories_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICRUD/GetSuppliers" message="tns:ICRUD_GetSuppliers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICRUD/GetSuppliersResponse" message="tns:ICRUD_GetSuppliers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProducts">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICRUD/AddProducts" message="tns:ICRUD_AddProducts_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICRUD/AddProductsResponse" message="tns:ICRUD_AddProducts_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICRUD" type="tns:ICRUD">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetProducts">
       <soap:operation soapAction="http://tempuri.org/ICRUD/GetProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategories">
+      <soap:operation soapAction="http://tempuri.org/ICRUD/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSuppliers">
+      <soap:operation soapAction="http://tempuri.org/ICRUD/GetSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProducts">
+      <soap:operation soapAction="http://tempuri.org/ICRUD/AddProducts" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

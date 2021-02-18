@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Text;
 
-namespace MVC_CRUD.Model
+namespace MVC_CRUD.Entities.Models
 {
-    public class Supplier
+   public class SupplierEntity : Entity
     {
         public int SupplierID { get; set; }
         public string ContactTitle { get; set; }
-
- 
     }
 }

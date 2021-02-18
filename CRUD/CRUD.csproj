@@ -91,9 +91,9 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MVC_CRUD\MVC_CRUD.csproj">
-      <Project>{e9d6a085-821f-4863-9ffc-c3af30c91d5c}</Project>
-      <Name>MVC_CRUD</Name>
+    <ProjectReference Include="..\MVC_CRUD.Entities\MVC_CRUD.Entities.csproj">
+      <Project>{9c87da3e-6e5b-46b1-b0ba-29f20ce68799}</Project>
+      <Name>MVC_CRUD.Entities</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
