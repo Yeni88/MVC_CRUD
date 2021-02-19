@@ -34,14 +34,12 @@
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Categoría</label>
                     <select id="CategoryT" class="form-select">
-                        <option>Categoría</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Suplidor</label>
                     <select id="SuplidorT" class="form-select">
-                        <option>Supplidor</option>
                     </select>
                 </div>
 
@@ -95,6 +93,7 @@
             listarProductos();
             listCategories();
             listSuppliers();
+            
         });
 
         var listarProductos = function () {
@@ -139,6 +138,7 @@
                     $.each(data, function (i, item) {
                         $("#CategoryT").append('<option value=' + item.CategoryID + '>' + item.CategoryName + '</option>');
                     });
+                    getDataProduct();
                 }
             });
         };
@@ -166,20 +166,29 @@
     function getDataProduct() {
 
 
-            var product = {
+        var cod = document.getElementById("CategoryT").value;
+        console.log(cod);
 
-                //CategoryID : 
-                //SuplierID:
-              ProductName: $("#ProductNameT").val(),
-              QuantityPerUnit: $("#ProductNameT").val(),
-              UnitPrice: $("#ProductNameT").val(),
-              UnitsInStock: $("#ProductNameT").val(),
-              UnitsOnOrder: $("#ProductNameT").val(),
-              ReorderLevel: $("#ProductNameT").val(),
-              //Discontinued: 
+        /* Para obtener el texto */
+        var text = document.getElementById("CategoryT");
+        var selected = text.options[text.selectedIndex].text;
+        console.log(selected);
+    
+
+            //var product = {
+
+            //    //CategoryID : 
+            //    //SuplierID:
+            //  ProductName: $("#ProductNameT").val(),
+            //  QuantityPerUnit: $("#ProductNameT").val(),
+            //  UnitPrice: $("#ProductNameT").val(),
+            //  UnitsInStock: $("#ProductNameT").val(),
+            //  UnitsOnOrder: $("#ProductNameT").val(),
+            //  ReorderLevel: $("#ProductNameT").val(),
+            //  //Discontinued: 
 
 
-        };
+        //};
     };
 
         var CreateProduct = function () {
