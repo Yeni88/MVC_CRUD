@@ -72,13 +72,13 @@
                 <div class="mb-3" style=" marginmargin-top: 5">
                     <label for="disabledSelect" class="form-label">Descontinuo</label>
                     <select id="DiscT" class="js-disabled">
-                        <option value="one">Activo</option>
-                        <option value="two">InacActivo</option>
+                        <option value=1>Activo</option>
+                        <option value=2>InacActivo</option>
                     </select>
 
                 </div>
-
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="getDataProduct()" type="button">
+                
             </fieldset>
         </form>
 
@@ -93,6 +93,7 @@
             listarProductos();
             listCategories();
             listSuppliers();
+            CreateProduct();
             
         });
 
@@ -138,7 +139,6 @@
                     $.each(data, function (i, item) {
                         $("#CategoryT").append('<option value=' + item.CategoryID + '>' + item.CategoryName + '</option>');
                     });
-                    getDataProduct();
                 }
             });
         };
@@ -166,43 +166,21 @@
         function getDataProduct() {
 
 
-            var codc = document.getElementById("CategoryT").value;
-            console.log(codc);
-
-            var cods = document.getElementById("SuplidorT").value;
-            console.log(cods);
-
-            /* Para obtener el texto */
-            var text = document.getElementById("CategoryT");
-            var selected = text.options[text.selectedIndex].text;
-            console.log(selected);
-
-            var textDis = document.getElementById("DiscT");
-            var selected = text.options[text.selectedIndex].text;
-            console.log(selected);
-
-            var disc = 0;
-
-            if (textDis === "Activo") {
-
-                disc = 1;
-            }
-            disc = 0;
-
-            console.log(disc);
-    
+            var codC = document.getElementById("CategoryT").value;
+            var codS = document.getElementById("SuplidorT").value;
+            var codD = document.getElementById("DiscT").value;
 
             var product = {
 
-              CategoryID: codc,
-              SuplierID: cods,
-              ProductName: $("#ProductNameT").val(),
-              QuantityPerUnit: $("#ProductNameT").val(),
-              UnitPrice: $("#ProductNameT").val(),
-              UnitsInStock: $("#ProductNameT").val(),
-              UnitsOnOrder: $("#ProductNameT").val(),
-              ReorderLevel: $("#ProductNameT").val(),
-              Discontinued: disc
+                CategoryID: codC,
+                SuplierID: codS,
+                ProductName: $("#ProductNameT").val(),
+                QuantityPerUnit: $("#CantUnidadT").val(),
+                UnitPrice: $("#UnidadPrecioT").val(),
+                UnitsInStock: $("#UnidadStockT").val(),
+                UnitsOnOrder: $("#UnidadOrdenT").val(),
+                ReorderLevel: $("#UnidadReordenT").val(),
+                Discontinued: codD
 
 
             };
@@ -210,21 +188,31 @@
             console.log(product);
     };
 
-        var CreateProduct = function () {
+        function CreateProduct() {
 
-            //$.ajax({
-            //    type: "POST",
-            //    url: '/Product/AddProducts',
-            //    datatype: "json",
-            //    cache: false,
-            //    success: function (data) {
-            //        console.log(data)
+            var product = getDataProduct();
+          
+            $.ajax({
+                type: "POST",
+                url: '/Product/AddProducts',
+                datatype: "json",
+                cache: false,
+                success: function (data) {
+                    console.log(data)
 
-            //       
-            //    }
-            //});
-
+                   
+                }
+            });
+            
         };
+
+        //var boton = document.getElementById('send');
+
+        //boton.addEventListener('click', function () {
+
+        //    getDataProduct();
+        //    console.log("Funciona");
+        //});
 
     </script>
 </div>
