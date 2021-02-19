@@ -77,7 +77,7 @@
                     </select>
 
                 </div>
-                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="getDataProduct()" type="button">
+                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
                 
             </fieldset>
         </form>
@@ -87,106 +87,102 @@
 
    
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        $(document).ready(function () {
-            listarProductos();
-            listCategories();
-            listSuppliers();
-            CreateProduct();
+    $(document).ready(function () {
+        listarProductos();
+        listCategories();
+        listSuppliers();
+       //CreateProduct();
             
-        });
+    });
 
-        var listarProductos = function () {
-            $.ajax({
-                type: "POST",
-                url: '/Product/GetProducts',
-                datatype: "json",
-                cache: false,
-                success: function (data) {
-                    console.log(data)
-                    var $filas = '';
+    var listarProductos = function () {
+        $.ajax({
+            type: "POST",
+            url: '/Product/GetProducts',
+            // datatype: "json",
+            cache: false,
+            success: function (data) {
+                console.log(data)
+                var $filas = '';
 
-                    $.each(data, function (i, item) {
+                $.each(data, function (i, item) {
                        
-                        $filas += '<tr class="odd" role="row">';
-                        $filas += '<td class=".edit" title="">' + item.ProductID + '</td>';
-                        $filas += '<td class=".edit" title="">' + item.ProductName + '</td>';
-                        $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
-                        $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
-                        $filas += '<td class=".edit" title="">' + item.Supplier.ContactTitle + '</td>';
-                        $filas += '</tr>'
-                    });
-                    $("#TablaListado tbody").html($filas);
+                    $filas += '<tr class="odd" role="row">';
+                    $filas += '<td class=".edit" title="">' + item.ProductID + '</td>';
+                    $filas += '<td class=".edit" title="">' + item.ProductName + '</td>';
+                    $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
+                    $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
+                    $filas += '<td class=".edit" title="">' + item.Supplier.ContactTitle + '</td>';
+                    $filas += '</tr>'
+                });
+                $("#TablaListado tbody").html($filas);
 
-                }
-            });
-        };
+            }
+        });
+    };
 
         //LSITAR CATEGORIAS
 
-        var listCategories = function () {
+    var listCategories = function () {
 
-            $.ajax({
-                type: "POST",
-                url: '/Product/GetCategories',
-                datatype: "json",
-                cache: false,
-                success: function (data) {
-                    console.log(data)
-                    //var $filas = '';
-
-                    $.each(data, function (i, item) {
-                        $("#CategoryT").append('<option value=' + item.CategoryID + '>' + item.CategoryName + '</option>');
-                    });
-                }
-            });
-        };
+        $.ajax({
+            type: "POST",
+            url: '/Product/GetCategories',
+            cache: false,
+            success: function (data) {
+                console.log(data)
+                $.each(data, function (i, item) {
+                    $("#CategoryT").append('<option value=' + item.CategoryID + '>' + item.CategoryName + '</option>');
+                });
+            }
+        });
+    };
 
     //LISTAR SUPPLIDORES
-        var listSuppliers = function () {
+    var listSuppliers = function () {
 
-            $.ajax({
-                type: "POST",
-                url: '/Product/GetSuppliers',
-                datatype: "json",
-                cache: false,
-                success: function (data) {
-                    console.log(data)
+        $.ajax({
+            type: "POST",
+            url: '/Product/GetSuppliers',
+            cache: false,
+            success: function (data) {
+                console.log(data)
 
-                    $.each(data, function (i, item) {
-                        $("#SuplidorT").append('<option value=' + item.SupplierID + '>' + item.CompanyName + '</option>');
-                    });
-                }
-            });
-        };
+                $.each(data, function (i, item) {
+                    $("#SuplidorT").append('<option value=' + item.SupplierID + '>' + item.CompanyName + '</option>');
+                });
+            }
+        });
+    };
 
     //ADD PRODUCTS
 
-        function getDataProduct() {
+    function getDataProduct() {
 
 
-            var codC = document.getElementById("CategoryT").value;
-            var codS = document.getElementById("SuplidorT").value;
-            var codD = document.getElementById("DiscT").value;
+        var codC = document.getElementById("CategoryT").value;
+        var codS = document.getElementById("SuplidorT").value;
+        var codD = document.getElementById("DiscT").value;
 
-            var product = {
+        var product = {
 
-                CategoryID: codC,
-                SuplierID: codS,
-                ProductName: $("#ProductNameT").val(),
-                QuantityPerUnit: $("#CantUnidadT").val(),
-                UnitPrice: $("#UnidadPrecioT").val(),
-                UnitsInStock: $("#UnidadStockT").val(),
-                UnitsOnOrder: $("#UnidadOrdenT").val(),
-                ReorderLevel: $("#UnidadReordenT").val(),
-                Discontinued: codD
+            CategoryID: codC,
+            SuplierID: codS,
+            ProductName: $("#ProductNameT").val(),
+            QuantityPerUnit: $("#CantUnidadT").val(),
+            UnitPrice: $("#UnidadPrecioT").val(),
+            UnitsInStock: $("#UnidadStockT").val(),
+            UnitsOnOrder: $("#UnidadOrdenT").val(),
+            ReorderLevel: $("#UnidadReordenT").val(),
+            Discontinued: codD
 
 
-            };
+        };
 
-            console.log(product);
-    };
+        console.log(product);
+};
 
         function CreateProduct() {
 
@@ -196,6 +192,7 @@
                 type: "POST",
                 url: '/Product/AddProducts',
                 datatype: "json",
+                data: product, 
                 cache: false,
                 success: function (data) {
                     console.log(data)
@@ -205,14 +202,6 @@
             });
             
         };
-
-        //var boton = document.getElementById('send');
-
-        //boton.addEventListener('click', function () {
-
-        //    getDataProduct();
-        //    console.log("Funciona");
-        //});
 
     </script>
 </div>
