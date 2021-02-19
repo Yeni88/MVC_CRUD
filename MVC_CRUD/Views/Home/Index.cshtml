@@ -71,7 +71,7 @@
 
                 <div class="mb-3" style=" marginmargin-top: 5">
                     <label for="disabledSelect" class="form-label">Descontinuo</label>
-                    <select class="js-disabled">
+                    <select id="DiscT" class="js-disabled">
                         <option value="one">Activo</option>
                         <option value="two">InacActivo</option>
                     </select>
@@ -163,32 +163,51 @@
 
     //ADD PRODUCTS
 
-    function getDataProduct() {
+        function getDataProduct() {
 
 
-        var cod = document.getElementById("CategoryT").value;
-        console.log(cod);
+            var codc = document.getElementById("CategoryT").value;
+            console.log(codc);
 
-        /* Para obtener el texto */
-        var text = document.getElementById("CategoryT");
-        var selected = text.options[text.selectedIndex].text;
-        console.log(selected);
+            var cods = document.getElementById("SuplidorT").value;
+            console.log(cods);
+
+            /* Para obtener el texto */
+            var text = document.getElementById("CategoryT");
+            var selected = text.options[text.selectedIndex].text;
+            console.log(selected);
+
+            var textDis = document.getElementById("DiscT");
+            var selected = text.options[text.selectedIndex].text;
+            console.log(selected);
+
+            var disc = 0;
+
+            if (textDis === "Activo") {
+
+                disc = 1;
+            }
+            disc = 0;
+
+            console.log(disc);
     
 
-            //var product = {
+            var product = {
 
-            //    //CategoryID : 
-            //    //SuplierID:
-            //  ProductName: $("#ProductNameT").val(),
-            //  QuantityPerUnit: $("#ProductNameT").val(),
-            //  UnitPrice: $("#ProductNameT").val(),
-            //  UnitsInStock: $("#ProductNameT").val(),
-            //  UnitsOnOrder: $("#ProductNameT").val(),
-            //  ReorderLevel: $("#ProductNameT").val(),
-            //  //Discontinued: 
+              CategoryID: codc,
+              SuplierID: cods,
+              ProductName: $("#ProductNameT").val(),
+              QuantityPerUnit: $("#ProductNameT").val(),
+              UnitPrice: $("#ProductNameT").val(),
+              UnitsInStock: $("#ProductNameT").val(),
+              UnitsOnOrder: $("#ProductNameT").val(),
+              ReorderLevel: $("#ProductNameT").val(),
+              Discontinued: disc
 
 
-        //};
+            };
+
+            console.log(product);
     };
 
         var CreateProduct = function () {
