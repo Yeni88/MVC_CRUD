@@ -7,6 +7,6 @@ namespace MVC_CRUD.Entities.Models
    public class SupplierEntity : Entity
     {
         public int SupplierID { get; set; }
-        public string ContactTitle { get; set; }
+        public string CompanyName { get; set; }
     }
 }

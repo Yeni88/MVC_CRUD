@@ -34,14 +34,14 @@
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Categoría</label>
                     <select id="CategoryT" class="form-select">
-                        <option>Disabled select</option>
+                        <option>Categoría</option>
                     </select>
                 </div>
 
                 <div class="mb-3">
                     <label for="disabledSelect" class="form-label">Suplidor</label>
                     <select id="SuplidorT" class="form-select">
-                        <option>Disabled select</option>
+                        <option>Supplidor</option>
                     </select>
                 </div>
 
@@ -93,7 +93,8 @@
 
         $(document).ready(function () {
             listarProductos();
-           // listCategories();
+            listCategories();
+            listSuppliers();
         });
 
         var listarProductos = function () {
@@ -108,6 +109,7 @@
 
                     $.each(data, function (i, item) {
                        
+                        $filas += '<tr class="odd" role="row">';
                         $filas += '<td class=".edit" title="">' + item.ProductID + '</td>';
                         $filas += '<td class=".edit" title="">' + item.ProductName + '</td>';
                         $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
@@ -123,22 +125,81 @@
 
         //LSITAR CATEGORIAS
 
-        //var listCategories = function () {
+        var listCategories = function () {
 
-        //    $.ajax({
-        //        type: "POST",
-        //        url: '/Product/GetCategories',
-        //        datatype: "json",
-        //        cache: false,
-        //        success: function (data) {
-        //            console.log(data)
-        //            //var $filas = '';
+            $.ajax({
+                type: "POST",
+                url: '/Product/GetCategories',
+                datatype: "json",
+                cache: false,
+                success: function (data) {
+                    console.log(data)
+                    //var $filas = '';
 
-        //            $.each(data, function (i, item) {
-        //                $("#CategoryT").append('<option value=' + i + '>' + item.CategoryName + '</option>');
-        //            });
-        //        }
-        //    });
-        //};
+                    $.each(data, function (i, item) {
+                        $("#CategoryT").append('<option value=' + item.CategoryID + '>' + item.CategoryName + '</option>');
+                    });
+                }
+            });
+        };
+
+    //LISTAR SUPPLIDORES
+        var listSuppliers = function () {
+
+            $.ajax({
+                type: "POST",
+                url: '/Product/GetSuppliers',
+                datatype: "json",
+                cache: false,
+                success: function (data) {
+                    console.log(data)
+
+                    $.each(data, function (i, item) {
+                        $("#SuplidorT").append('<option value=' + item.SupplierID + '>' + item.CompanyName + '</option>');
+                    });
+                }
+            });
+        };
+
+    //ADD PRODUCTS
+
+    function getDataProduct() {
+
+
+            var product = {
+
+                //CategoryID : 
+                //SuplierID:
+              ProductName: $("#ProductNameT").val(),
+              QuantityPerUnit: $("#ProductNameT").val(),
+              UnitPrice: $("#ProductNameT").val(),
+              UnitsInStock: $("#ProductNameT").val(),
+              UnitsOnOrder: $("#ProductNameT").val(),
+              ReorderLevel: $("#ProductNameT").val(),
+              //Discontinued: 
+
+
+        };
+    };
+
+        var CreateProduct = function () {
+
+            $.ajax({
+                type: "POST",
+                url: '/Product/AddProducts',
+                datatype: "json",
+                cache: false,
+                success: function (data) {
+                    console.log(data)
+
+                    var 
+                    //$.each(data, function (i, item) {
+                    //    $("#SuplidorT").append('<option value=' + item.SupplierID + '>' + item.CompanyName + '</option>');
+                    //});
+                }
+            });
+
+        };
+
     </script>
 </div>

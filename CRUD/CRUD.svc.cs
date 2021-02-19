@@ -122,7 +122,7 @@ namespace CRUD
             try
             {
                 ConnectionDB connection = new ConnectionDB();
-                using (IDbConnection conn = connection.GetConnection("ConDB"))
+                using (IDbConnection conn = connection.GetConnection("ConnDB"))
                 {
 
                     var resultadoGS = conn.Query<SupplierEntity>(
