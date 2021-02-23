@@ -190,6 +190,8 @@
         return product;
 };
 
+    //CREATE PRODUCT
+
         function CreateProduct() {
 
             var product = getDataProduct();
@@ -206,6 +208,8 @@
             
     };
 
+    //DELETE PRODUCT
+
     function DeletePoduct(ProductID) {
         $.ajax({
             type: "POST",
@@ -215,8 +219,6 @@
             cache: false,
            
         });
-       
-       
     }
 
 
