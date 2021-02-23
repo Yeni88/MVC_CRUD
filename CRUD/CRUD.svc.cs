@@ -60,27 +60,36 @@ namespace CRUD
         /// Product
         /// </returns>
         public ProductEntity AddProducts(ProductEntity product){
-            ConnectionDB ConnectionManagerInstance = new ConnectionDB();
-            using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+            try
             {
-                var resultadAP = connection.QuerySingle<ProductEntity>("sp_addNewProducts",
+                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+                {
+                    var resultadAP = connection.QuerySingleOrDefault<ProductEntity>("sp_addNewProducts",
 
-                    param: new
-                    {
-                        product.ProductName,
-                        product.SupplierID,
-                        product.CategoryID,
-                        product.QuantityPerUnit,
-                        product.UnitPrice,
-                        product.UnitsInStock,
-                        product.UnitsOnOrder,
-                        product.ReorderLevel,
-                        product.Discontinued
-                    },
-                      commandType: CommandType.StoredProcedure);
+                        param: new
+                        {
+                            product.ProductName,
+                            product.SupplierID,
+                            product.CategoryID,
+                            product.QuantityPerUnit,
+                            product.UnitPrice,
+                            product.UnitsInStock,
+                            product.UnitsOnOrder,
+                            product.ReorderLevel,
+                            product.Discontinued
+                        },
+                          commandType: CommandType.StoredProcedure);
 
-                return resultadAP;
+                    return resultadAP;
+                }
             }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
         }
 
         /// <summary>

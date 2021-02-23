@@ -15,6 +15,8 @@
                         <th width="10%" data-priority="2">UnitPrice</th>
                         <th width="10%" data-priority="3">Supplier</th>
                         <th width="10%" data-priority="4">Category</th>
+                        <th width="10%" data-priority="5">Eliminar</th>
+                        <th width="10%" data-priority="6">Editar</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -77,7 +79,7 @@
                     </select>
 
                 </div>
-                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
+               <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
                 
             </fieldset>
         </form>
@@ -106,15 +108,17 @@
             success: function (data) {
                 console.log(data)
                 var $filas = '';
-
+                //<button onclick="clickHandler(event, this)"> Click me!!! </button>
                 $.each(data, function (i, item) {
-                       
+
                     $filas += '<tr class="odd" role="row">';
                     $filas += '<td class=".edit" title="">' + item.ProductID + '</td>';
                     $filas += '<td class=".edit" title="">' + item.ProductName + '</td>';
                     $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
+                    $filas += '<td class=".edit" title="">' + item.Supplier.CompanyName + '</td>';
                     $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
-                    $filas += '<td class=".edit" title="">' + item.Supplier.ContactTitle + '</td>';
+                    $filas += '<td><button>Eliminar</button></td>';
+                    $filas += '<td><button>Editar</button></td>';
                     $filas += '</tr>'
                 });
                 $("#TablaListado tbody").html($filas);
@@ -168,9 +172,9 @@
 
         var product = {
 
-            CategoryID: codC,
-            SuplierID: codS,
             ProductName: $("#ProductNameT").val(),
+            SupplierID: codS,
+            CategoryID: codC,
             QuantityPerUnit: $("#CantUnidadT").val(),
             UnitPrice: $("#UnidadPrecioT").val(),
             UnitsInStock: $("#UnidadStockT").val(),
@@ -178,28 +182,32 @@
             ReorderLevel: $("#UnidadReordenT").val(),
             Discontinued: codD
 
-
         };
 
+        console.log("producto enviado:");
         console.log(product);
+        return product;
 };
 
         function CreateProduct() {
 
-            //var product = getDataProduct();
+            var product = getDataProduct();
+            console.log("producto recibido");
+            console.log(product);
 
-            //$.ajax({
-            //    type: "POST",
-            //    url: '/Product/AddProducts',
-            //    datatype: "json",
-            //    data: product, 
-            //    cache: false,
-            //    success: function (data) {
-            //        console.log(data)
+            $.ajax({
+                type: "POST",
+                url: '/Product/AddProducts',
+                datatype: "json",
+                data: product, 
+                cache: false,
+               // body: product,
+                body : JSON.stringify(product)
+                //success: function () {
 
                    
-            //    }
-            //});
+                //}
+            });
             
         };
 
