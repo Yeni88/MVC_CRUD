@@ -148,5 +148,10 @@ namespace CRUD
                 throw new Exception(ex.Message);
             }
         }
+
+        public int DeleteProducts(int ID, int State)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
