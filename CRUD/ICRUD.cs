@@ -25,7 +25,7 @@ namespace CRUD
         ProductEntity AddProducts(ProductEntity product);
 
         [OperationContract]
-        int DeleteProducts(int ID, int State);
+        ProductEntity DeleteProducts(int? ID);
 
     }
 }

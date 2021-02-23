@@ -149,9 +149,31 @@ namespace CRUD
             }
         }
 
-        public int DeleteProducts(int ID, int State)
+        public ProductEntity DeleteProducts(int? ID)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+                {
+                    var resultadAP = connection.QuerySingleOrDefault<ProductEntity>("sp_DiscontinuedProduct",
+
+                        param: new
+                        {
+                            @ProductID_s = ID,
+                            Disc = 0
+                        },
+                          commandType: CommandType.StoredProcedure);
+
+                    return resultadAP;
+                    }
+                }
+            catch (Exception ex)
+            {
+
+                throw new Exception (ex.Message);
+            }
         }
     }
 }

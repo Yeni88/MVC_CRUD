@@ -38,6 +38,12 @@ namespace MVC_CRUD.CRUD_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/AddProducts", ReplyAction="http://tempuri.org/ICRUD/AddProductsResponse")]
         System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> AddProductsAsync(MVC_CRUD.Entities.Models.ProductEntity product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/DeleteProducts", ReplyAction="http://tempuri.org/ICRUD/DeleteProductsResponse")]
+        MVC_CRUD.Entities.Models.ProductEntity DeleteProducts(System.Nullable<int> ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/DeleteProducts", ReplyAction="http://tempuri.org/ICRUD/DeleteProductsResponse")]
+        System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> DeleteProductsAsync(System.Nullable<int> ID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +103,14 @@ namespace MVC_CRUD.CRUD_Service {
         
         public System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> AddProductsAsync(MVC_CRUD.Entities.Models.ProductEntity product) {
             return base.Channel.AddProductsAsync(product);
+        }
+        
+        public MVC_CRUD.Entities.Models.ProductEntity DeleteProducts(System.Nullable<int> ID) {
+            return base.Channel.DeleteProducts(ID);
+        }
+        
+        public System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> DeleteProductsAsync(System.Nullable<int> ID) {
+            return base.Channel.DeleteProductsAsync(ID);
         }
     }
 }

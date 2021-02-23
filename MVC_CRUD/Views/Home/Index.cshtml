@@ -79,6 +79,7 @@
                     </select>
 
                 </div>
+    
                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
                 
             </fieldset>
@@ -117,7 +118,7 @@
                     $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
                     $filas += '<td class=".edit" title="">' + item.Supplier.CompanyName + '</td>';
                     $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
-                    $filas += '<td><button>Eliminar</button></td>';
+                    $filas += '<td><button onclick="DeletePoduct(' + item.ProductID + ')">Eliminar</button></td>';
                     $filas += '<td><button>Editar</button></td>';
                     $filas += '</tr>'
                 });
@@ -201,15 +202,23 @@
                 datatype: "json",
                 data: product, 
                 cache: false,
-               // body: product,
-                body : JSON.stringify(product)
-                //success: function () {
-
-                   
-                //}
             });
             
-        };
+    };
+
+    function DeletePoduct(ProductID) {
+        $.ajax({
+            type: "POST",
+            url: '/Product/DeleteProducts/' + ProductID,
+            datatype: "json",
+            data: { ProductID },
+            cache: false,
+           
+        });
+       
+       
+    }
+
 
     </script>
 </div>

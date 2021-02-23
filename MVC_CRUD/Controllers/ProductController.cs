@@ -49,7 +49,7 @@ namespace MVC_CRUD.Controllers
             try
             {
                 using (var cat = new CRUD_Service.CRUDClient())
-                {   
+                {
                     return Json(cat.GetCategories());
                 }
             }
@@ -103,7 +103,28 @@ namespace MVC_CRUD.Controllers
             catch (Exception x)
             {
 
-                throw;
+                throw new Exception(x.Message);
+            }
+        }
+        /// <summary>
+        /// Descontinuar productos
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns>ActionResult</returns>
+        [HttpPost]
+        public ActionResult DeleteProducts([Microsoft.AspNetCore.Mvc.FromBody] int? ProductID)
+        {
+            try
+            {
+                using (var product_temp = new CRUD_Service.CRUDClient())
+                {
+                    return Json(product_temp.DeleteProducts(ProductID));
+
+                }
+            }
+            catch (Exception x)
+            {
+                throw new Exception(x.Message);
             }
         }
     }
