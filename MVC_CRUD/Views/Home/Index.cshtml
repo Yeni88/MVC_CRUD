@@ -250,23 +250,21 @@
                 $("#UnidadPrecioT").val(respuesta.UnitPrice);
 
                 $("#ProductID").prop('disabled', true);
-
-
-              
+                $("#CantUnidadT").prop('disabled', true);
+                $("#UnidadReordenT").prop('disabled', true);
+                $("#UnidadStockT").prop('disabled', true);
+                $("#UnidadOrdenT").prop('disabled', true);
+                $("#UnidadReodenT").prop('disabled', true);
+                $("#DiscT").prop('disabled', true);
+ 
                 
             }  
         });        
     }
 
-//
-
-
     //UPDATE PRODUCT
 
     function UpdateProduct() {
-
-        //var codC = 
-        //var codS = ;
 
         var product = {
             ProductID: $("#ProductID").val(),
@@ -278,9 +276,6 @@
 
         console.log("enviado");
         console.log(product);
-
-
-
         $.ajax({
             type: "POST",
             url: '/Product/UpdateProducts',
