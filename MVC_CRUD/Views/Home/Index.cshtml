@@ -28,6 +28,12 @@
         <form>
             <fieldset>
                 <legend>Agregar Producto</legend>
+
+                <div class="mb-3">
+                    <label for="disabledTextInput" class="form-label">ID del producto</label>
+                    <input type="text" id="ProductID" class="form-control" placeholder="Disabled input">
+                </div>
+
                 <div class="mb-3">
                     <label for="disabledTextInput" class="form-label">Nombre del producto</label>
                     <input type="text" id="ProductNameT" class="form-control" placeholder="Disabled input">
@@ -79,9 +85,10 @@
                     </select>
 
                 </div>
-    
-               <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
-                
+
+                <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
+                <input id="send" value="Actualizar" class="btn btn-primary" onclick="UpdateProduct()" type="button">
+
             </fieldset>
         </form>
 
@@ -119,7 +126,7 @@
                     $filas += '<td class=".edit" title="">' + item.Supplier.CompanyName + '</td>';
                     $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
                     $filas += '<td><button onclick="DeletePoduct(' + item.ProductID + ')">Eliminar</button></td>';
-                    $filas += '<td><button>Editar</button></td>';
+                    $filas += '<td><button onclick="SetDataProduct(' + item.ProductID + ')">Editar</button></td>';
                     $filas += '</tr>'
                 });
                 $("#TablaListado tbody").html($filas);
@@ -188,32 +195,33 @@
         console.log("producto enviado:");
         console.log(product);
         return product;
-};
+    }
 
     //CREATE PRODUCT
 
-        function CreateProduct() {
+    function CreateProduct() {
 
-            var product = getDataProduct();
-            console.log("producto recibido");
-            console.log(product);
+        var product = getDataProduct();
+        console.log("producto recibido");
+        console.log(product);
 
-            $.ajax({
-                type: "POST",
-                url: '/Product/AddProducts',
-                datatype: "json",
-                data: product, 
-                cache: false,
-            });
+        $.ajax({
+            type: "POST",
+            url: '/Product/AddProducts',
+            datatype: "json",
+            data: product, 
+            cache: false,
+        });
             
-    };
+    }
 
     //DELETE PRODUCT
 
     function DeletePoduct(ProductID) {
+       
         $.ajax({
             type: "POST",
-            url: '/Product/DeleteProducts/' + ProductID,
+            url: '/Product/DeleteProducts/' ,
             datatype: "json",
             data: { ProductID },
             cache: false,
@@ -221,6 +229,68 @@
         });
     }
 
+    //SET DATA PRODUCT
+    function SetDataProduct(ProductID) {
 
+        console.log("ID " + ProductID);
+        $.ajax({
+            type: "POST",
+            url: '/Product/ConsultProducts',
+            datatype: "json",
+            data: { ProductID },
+            cache: false,
+            success: function (respuesta) {
+                console.log("Respuesta");
+                console.log(respuesta);
+
+                $("#ProductID").val(respuesta.ProductID);  
+                $("#ProductNameT").val(respuesta.ProductName);
+                document.getElementById("CategoryT").value = respuesta.CategoryID;
+                document.getElementById("SuplidorT").value = respuesta.SupplierID;
+                $("#UnidadPrecioT").val(respuesta.UnitPrice);
+
+                $("#ProductID").prop('disabled', true);
+
+
+              
+                
+            }  
+        });        
+    }
+
+//
+
+
+    //UPDATE PRODUCT
+
+    function UpdateProduct() {
+
+        //var codC = 
+        //var codS = ;
+
+        var product = {
+            ProductID: $("#ProductID").val(),
+            ProductName: $("#ProductNameT").val(),
+            SupplierID: document.getElementById("SuplidorT").value,
+            CategoryID: document.getElementById("CategoryT").value,
+            UnitPrice: $("#UnidadPrecioT").val()
+        };
+
+        console.log("enviado");
+        console.log(product);
+
+
+
+        $.ajax({
+            type: "POST",
+            url: '/Product/UpdateProducts',
+            datatype: "json",
+            data: product,
+            cache: false,
+        });
+
+    }
+   
+ 
     </script>
 </div>

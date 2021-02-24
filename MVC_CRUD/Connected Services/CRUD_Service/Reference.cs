@@ -44,6 +44,18 @@ namespace MVC_CRUD.CRUD_Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/DeleteProducts", ReplyAction="http://tempuri.org/ICRUD/DeleteProductsResponse")]
         System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> DeleteProductsAsync(System.Nullable<int> ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/UpdateProducts", ReplyAction="http://tempuri.org/ICRUD/UpdateProductsResponse")]
+        MVC_CRUD.Entities.Models.ProductEntity UpdateProducts(MVC_CRUD.Entities.Models.ProductEntity product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/UpdateProducts", ReplyAction="http://tempuri.org/ICRUD/UpdateProductsResponse")]
+        System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> UpdateProductsAsync(MVC_CRUD.Entities.Models.ProductEntity product);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/ConsultProducts", ReplyAction="http://tempuri.org/ICRUD/ConsultProductsResponse")]
+        MVC_CRUD.Entities.Models.ProductEntity ConsultProducts(System.Nullable<int> Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICRUD/ConsultProducts", ReplyAction="http://tempuri.org/ICRUD/ConsultProductsResponse")]
+        System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> ConsultProductsAsync(System.Nullable<int> Id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -111,6 +123,22 @@ namespace MVC_CRUD.CRUD_Service {
         
         public System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> DeleteProductsAsync(System.Nullable<int> ID) {
             return base.Channel.DeleteProductsAsync(ID);
+        }
+        
+        public MVC_CRUD.Entities.Models.ProductEntity UpdateProducts(MVC_CRUD.Entities.Models.ProductEntity product) {
+            return base.Channel.UpdateProducts(product);
+        }
+        
+        public System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> UpdateProductsAsync(MVC_CRUD.Entities.Models.ProductEntity product) {
+            return base.Channel.UpdateProductsAsync(product);
+        }
+        
+        public MVC_CRUD.Entities.Models.ProductEntity ConsultProducts(System.Nullable<int> Id) {
+            return base.Channel.ConsultProducts(Id);
+        }
+        
+        public System.Threading.Tasks.Task<MVC_CRUD.Entities.Models.ProductEntity> ConsultProductsAsync(System.Nullable<int> Id) {
+            return base.Channel.ConsultProductsAsync(Id);
         }
     }
 }

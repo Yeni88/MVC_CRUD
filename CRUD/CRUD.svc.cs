@@ -179,5 +179,60 @@ public class CRUD : ICRUD
             throw new Exception (ex.Message);
         }
     }
-}
+
+        public ProductEntity UpdateProducts(ProductEntity product)
+        {
+            try
+            {
+                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+                {
+                    var resultadUP = connection.QuerySingleOrDefault<ProductEntity>("sp_UpdateProduct",
+
+                        param: new
+                        {
+                            ProductID  = product.ProductID,
+                            ProductName = product.ProductName,
+                            SupplierID = product.SupplierID,
+                            CategoryID = product.CategoryID,
+                            UnitPrice = product.UnitPrice
+                        },
+                            commandType: CommandType.StoredProcedure);
+
+                    return resultadUP;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public ProductEntity ConsultProducts(int? Id)
+        {
+            try
+            {
+                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+                {
+                    var resultadCP = connection.QuerySingleOrDefault<ProductEntity>("sp_consultProduct",
+
+                        param: new
+                        {
+                            index = Id
+                        },
+                            commandType: CommandType.StoredProcedure);
+
+                    return resultadCP;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+    }
 }

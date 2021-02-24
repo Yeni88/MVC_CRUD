@@ -27,5 +27,11 @@ namespace CRUD
         [OperationContract]
         ProductEntity DeleteProducts(int? ID);
 
+        [OperationContract]
+        ProductEntity UpdateProducts(ProductEntity product);
+
+        [OperationContract]
+        ProductEntity ConsultProducts(int? Id);
+
     }
 }
