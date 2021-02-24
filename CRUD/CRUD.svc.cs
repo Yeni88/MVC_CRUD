@@ -148,6 +148,7 @@ public class CRUD : ICRUD
             throw new Exception(ex.Message);
         }
     }
+    
     /// <summary>
     /// DELETE PRODUCTS
     /// </summary>
@@ -180,59 +181,69 @@ public class CRUD : ICRUD
         }
     }
 
-        public ProductEntity UpdateProducts(ProductEntity product)
+    /// <summary>
+    /// Update Products
+    /// </summary>
+    /// <param name="product"></param>
+    /// <returns>ProductEntity</returns>
+    public ProductEntity UpdateProducts(ProductEntity product)
+    {
+        try
         {
-            try
+            ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+            using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
             {
-                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
-                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
-                {
-                    var resultadUP = connection.QuerySingleOrDefault<ProductEntity>("sp_UpdateProduct",
+                var resultadUP = connection.QuerySingleOrDefault<ProductEntity>("sp_UpdateProduct",
 
-                        param: new
-                        {
-                            ProductID  = product.ProductID,
-                            ProductName = product.ProductName,
-                            SupplierID = product.SupplierID,
-                            CategoryID = product.CategoryID,
-                            UnitPrice = product.UnitPrice
-                        },
-                            commandType: CommandType.StoredProcedure);
+                    param: new
+                    {
+                        ProductID  = product.ProductID,
+                        ProductName = product.ProductName,
+                        SupplierID = product.SupplierID,
+                        CategoryID = product.CategoryID,
+                        UnitPrice = product.UnitPrice
+                    },
+                        commandType: CommandType.StoredProcedure);
 
-                    return resultadUP;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
+                return resultadUP;
             }
         }
-
-        public ProductEntity ConsultProducts(int? Id)
+        catch (Exception ex)
         {
-            try
-            {
-                ConnectionDB ConnectionManagerInstance = new ConnectionDB();
-                using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
-                {
-                    var resultadCP = connection.QuerySingleOrDefault<ProductEntity>("sp_consultProduct",
 
-                        param: new
-                        {
-                            index = Id
-                        },
-                            commandType: CommandType.StoredProcedure);
-
-                    return resultadCP;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception(ex.Message);
-            }
+            throw new Exception(ex.Message);
         }
     }
+        
+    /// <summary>
+    /// Consult Products
+    /// </summary>
+    /// <param name="Id"></param>
+    /// <returns>ProductEntity</returns>
+    public ProductEntity ConsultProducts(int? Id)
+    {
+        try
+        {
+            ConnectionDB ConnectionManagerInstance = new ConnectionDB();
+            using (IDbConnection connection = ConnectionManagerInstance.GetConnection("ConnDB"))
+            {
+                var resultadCP = connection.QuerySingleOrDefault<ProductEntity>("sp_consultProduct",
+
+                    param: new
+                    {
+                        index = Id
+                    },
+                        commandType: CommandType.StoredProcedure);
+
+                return resultadCP;
+            }
+
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception(ex.Message);
+        }
+    }
+}
 }
