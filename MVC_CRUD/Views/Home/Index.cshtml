@@ -39,15 +39,15 @@
                 <input type="text" id="ProductNameT" class="form-control" placeholder="Disabled input">
             </div>
 
-            <div class="mb-3">
+            <div  class="mb-3 mx-auto form-group" style="width: 400px;">
                 <label for="disabledSelect" class="form-label">Categoría</label>
-                <select id="CategoryT" class="form-select">
+                <select id="CategoryT" class="form-control form-control-lg">
                 </select>
             </div>
 
-            <div class="mb-3">
+            <div  class="mb-3 mx-auto form-group" style="width: 400px;">
                 <label for="disabledSelect" class="form-label">Suplidor</label>
-                <select id="SuplidorT" class="form-select">
+                <select id="SuplidorT" class="form-control form-control-lg">
                 </select>
             </div>
 
@@ -77,9 +77,9 @@
                 <input type="text" id="UnidadReordenT" class="form-control" placeholder="Disabled input">
             </div>
 
-            <div class="mb-3" style=" marginmargin-top: 5">
+            <div class="mb-3 mx-auto form-group" style="width: 400px;">
                 <label for="disabledSelect" class="form-label">Descontinuo</label>
-                <select id="DiscT" class="js-disabled">
+                <select id="DiscT" class="form-control form-control-lg">
                     <option value=1>Activo</option>
                     <option value=2>InacActivo</option>
                 </select>
@@ -87,7 +87,7 @@
             </div>
 
             <input id="send" value="Agregar Productos" class="btn btn-primary" onclick="CreateProduct()" type="button">
-            <input id="send" value="Actualizar" class="btn btn-primary" onclick="UpdateProduct()" type="button">
+            <input id="send2" value="Actualizar" class="btn btn-primary" onclick="UpdateProduct()" type="button">
 
         </fieldset>
     </form>
@@ -107,7 +107,11 @@ $(document).ready(function () {
 });
 
 //LISTAR PRODUCTOS
-var listarProductos = function () {
+    var listarProductos = function () {
+
+        $("#send2").prop('disabled', true);
+        $("#ProductID").prop('disabled', true);
+
     $.ajax({
         type: "POST",
         url: '/Product/GetProducts',
@@ -250,6 +254,8 @@ function SetDataProduct(ProductID) {
             $("#UnidadOrdenT").prop('disabled', true);
             $("#UnidadReodenT").prop('disabled', true);
             $("#DiscT").prop('disabled', true);
+            $("#send").prop('disabled', true);
+            $("#send2").prop('disabled', false);
  
                 
         }  
