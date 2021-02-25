@@ -30,7 +30,7 @@
             <legend>Agregar Producto</legend>
 
             <div class="mb-3">
-                <label for="disabledTextInput" class="form-label">ID del producto</label>
+                <label for="disabledTextInput" id="LPID" class="form-label">ID del producto</label>
                 <input type="text" id="ProductID" class="form-control" placeholder="Disabled input">
             </div>
 
@@ -110,7 +110,8 @@ $(document).ready(function () {
     var listarProductos = function () {
 
         $("#send2").prop('disabled', true);
-        $("#ProductID").prop('disabled', true);
+        $("#ProductID").hide(); 
+        $("#LPID").hide();
 
     $.ajax({
         type: "POST",
@@ -178,6 +179,8 @@ function getDataProduct() {
     var codS = document.getElementById("SuplidorT").value;
     var codD = document.getElementById("DiscT").value;
 
+    console.log(codD)
+
     var product = {
 
         ProductName: $("#ProductNameT").val(),
@@ -188,7 +191,7 @@ function getDataProduct() {
         UnitsInStock: $("#UnidadStockT").val(),
         UnitsOnOrder: $("#UnidadOrdenT").val(),
         ReorderLevel: $("#UnidadReordenT").val(),
-        Discontinued: codD
+        Discontinued: Discontinued(codD)
 
     };
 
@@ -211,7 +214,7 @@ function CreateProduct() {
         data: product, 
         cache: false,
     });
-            
+    location.reload();      
 }
 
 //DELETE PRODUCT
@@ -225,6 +228,9 @@ function DeletePoduct(ProductID) {
         cache: false,
            
     });
+
+    location.reload();
+  
 }
 
 //SET DATA PRODUCT
@@ -241,6 +247,8 @@ function SetDataProduct(ProductID) {
             console.log("Respuesta");
             console.log(respuesta);
 
+            $("#ProductID").show();
+            $("#LPID").show();
             $("#ProductID").val(respuesta.ProductID);  
             $("#ProductNameT").val(respuesta.ProductName);
             document.getElementById("CategoryT").value = respuesta.CategoryID;
@@ -282,9 +290,21 @@ function UpdateProduct() {
         data: product,
         cache: false,
     });
-
+    location.reload();
 }
-   
+
+    function Discontinued(dis) {
+        var value;
+
+        if (dis === 0){
+            value = 0
+        } else {
+            value = 1
+        }
+
+        return value;
+        
+    }
  
 </script>
 </div>
