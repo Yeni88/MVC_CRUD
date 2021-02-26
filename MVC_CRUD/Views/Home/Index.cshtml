@@ -80,8 +80,8 @@
             <div class="mb-3 mx-auto form-group" style="width: 400px;">
                 <label for="disabledSelect" class="form-label">Descontinuo</label>
                 <select id="DiscT" class="form-control form-control-lg">
-                    <option value=1>Activo</option>
-                    <option value=2>InacActivo</option>
+                    <option value= 1>Activo</option>
+                    <option value= 2>InacActivo</option>
                 </select>
 
             </div>
@@ -128,8 +128,8 @@ $(document).ready(function () {
                 $filas += '<td class=".edit" title="">' + item.UnitPrice + '</td>';
                 $filas += '<td class=".edit" title="">' + item.Supplier.CompanyName + '</td>';
                 $filas += '<td class=".edit" title="">' + item.Category.CategoryName + '</td>';
-                $filas += '<td><button onclick="DeletePoduct(' + item.ProductID + ')">Eliminar</button></td>';
-                $filas += '<td><button onclick="SetDataProduct(' + item.ProductID + ')">Editar</button></td>';
+                $filas += '<td><button class = "btn btn-danger"  onclick="DeletePoduct(' + item.ProductID + ')">Eliminar</button></td>';
+                $filas += '<td><button class = "btn btn-success"  onclick="SetDataProduct(' + item.ProductID + ')">Editar</button></td>';
                 $filas += '</tr>'
             });
             $("#TablaListado tbody").html($filas);
@@ -179,7 +179,8 @@ function getDataProduct() {
     var codS = document.getElementById("SuplidorT").value;
     var codD = document.getElementById("DiscT").value;
 
-    console.log(codD)
+    console.log("prueba");
+    console.log(codD);
 
     var product = {
 
@@ -194,6 +195,9 @@ function getDataProduct() {
         Discontinued: Discontinued(codD)
 
     };
+
+    console.log(codD)
+    console.log(product);
 
     console.log("producto enviado:");
     console.log(product);
